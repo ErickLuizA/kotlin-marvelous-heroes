@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MarvelousHeroes</string>
+    <string name="marvel_logo">Marvel Logo</string>
+    <string name="open">Open drawer</string>
+    <string name="close">Close drawer</string>
+    <string name="error_load_chars">A error occurred while loading characters</string>
+    <string name="welcome">Bem-vindo ao MarvelousHeroes</string>
+    <string name="choose">Escolha o seu\npersonagem</string>
+    <string name="menu">menu</string>
+</resources>
