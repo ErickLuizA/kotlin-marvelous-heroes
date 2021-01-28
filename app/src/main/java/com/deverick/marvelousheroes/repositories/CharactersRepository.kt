@@ -1,9 +1,9 @@
 package com.deverick.marvelousheroes.repositories
 
+import androidx.paging.PagingData
 import com.deverick.marvelousheroes.models.Character
-import com.deverick.marvelousheroes.models.MarvelResponse
-import retrofit2.Response
+import kotlinx.coroutines.flow.Flow
 
 interface CharactersRepository {
-    suspend fun getCharacters(): Response<MarvelResponse<Character>>
+    fun getCharacters(): Flow<PagingData<Character>>
 }
