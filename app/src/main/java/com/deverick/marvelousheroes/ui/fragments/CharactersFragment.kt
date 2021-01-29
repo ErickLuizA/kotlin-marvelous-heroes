@@ -13,6 +13,7 @@ import com.deverick.marvelousheroes.R
 import com.deverick.marvelousheroes.databinding.FragmentCharactersBinding
 import com.deverick.marvelousheroes.models.Character
 import com.deverick.marvelousheroes.ui.adapters.CharactersAdapter
+import com.deverick.marvelousheroes.ui.adapters.CharactersLoadStateAdapter
 import com.deverick.marvelousheroes.viewmodels.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -63,6 +64,9 @@ class CharactersFragment : Fragment() {
 
         binding.rvCharacters.apply {
             adapter = charactersAdapter
+            adapter = charactersAdapter.withLoadStateFooter(
+                CharactersLoadStateAdapter { charactersAdapter.retry() }
+            )
             layoutManager = GridLayoutManager(activity, 2)
         }
     }
