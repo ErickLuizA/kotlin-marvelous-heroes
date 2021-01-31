@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.deverick.marvelousheroes.R
 import com.deverick.marvelousheroes.viewmodels.DetailsViewModel
 import com.deverick.marvelousheroes.databinding.DetailsFragmentBinding
 
@@ -30,8 +32,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupToolbar()
-
-        binding.characterName.text = args.character.name
+        bindData()
     }
 
     private fun setupToolbar() {
@@ -39,5 +40,17 @@ class DetailsFragment : Fragment() {
 
         binding.detailsToolbar.setupWithNavController(navController)
         binding.detailsToolbar.title = null
+    }
+
+    private fun bindData() {
+        binding.characterName.text = args.character.name
+        Glide.with(this)
+            .load("${args.character.thumbnail.path}/portrait_fantastic.${args.character.thumbnail.extension}")
+            .into(binding.characterImage)
+        binding.characterInfo.text = args.character.description
+        binding.characterComics.text = getString(R.string.comics, args.character.comics.available)
+        binding.characterStories.text = getString(R.string.stories, args.character.stories.available)
+        binding.characterEvents.text = getString(R.string.events, args.character.events.available)
+        binding.characterSeries.text = getString(R.string.series, args.character.series.available)
     }
 }

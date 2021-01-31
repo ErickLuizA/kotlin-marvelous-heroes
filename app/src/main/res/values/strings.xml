@@ -7,4 +7,11 @@
     <string name="welcome">Bem-vindo ao MarvelousHeroes</string>
     <string name="choose">Escolha o seu\npersonagem</string>
     <string name="menu">menu</string>
+    <string name="char_img">character image</string>
+    <string name="favorite">Favorite</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="comics">Comics: %1$s</string>
+    <string name="stories">Stories: %1$s</string>
+    <string name="events">Events: %1$s</string>
+    <string name="series">Series: %1$s</string>
 </resources>
