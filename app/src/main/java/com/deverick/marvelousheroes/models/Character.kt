@@ -1,10 +1,16 @@
 package com.deverick.marvelousheroes.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
+@Entity(
+    tableName = "characters"
+)
 @Parcelize
 data class Character(
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
     val description: String,
@@ -16,19 +22,20 @@ data class Character(
     val stories: CharacterStories,
     val events: CharacterEvents,
     val series: CharacterSeries,
-): Parcelable
+    val favorite: Boolean = false,
+) : Parcelable
 
 @Parcelize
 data class CharacterURL(
     val type: String,
     val url: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterThumbnail(
     val path: String,
     val extension: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterComics(
@@ -36,7 +43,7 @@ data class CharacterComics(
     val returned: String,
     val collectionURI: String,
     val items: List<CharacterComicsItem>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterStories(
@@ -44,7 +51,7 @@ data class CharacterStories(
     val returned: String,
     val collectionURI: String,
     val items: List<CharacterStoriesItem>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterEvents(
@@ -52,7 +59,7 @@ data class CharacterEvents(
     val returned: String,
     val collectionURI: String,
     val items: List<CharacterEventsItem>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterSeries(
@@ -60,31 +67,31 @@ data class CharacterSeries(
     val returned: String,
     val collectionURI: String,
     val items: List<CharacterSeriesItem>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterComicsItem(
     val resourceURI: String,
     val name: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterStoriesItem(
     val resourceURI: String,
     val name: String,
     val type: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterEventsItem(
     val resourceURI: String,
     val name: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class CharacterSeriesItem(
     val resourceURI: String,
     val name: String,
     val type: String
-): Parcelable
+) : Parcelable
 
