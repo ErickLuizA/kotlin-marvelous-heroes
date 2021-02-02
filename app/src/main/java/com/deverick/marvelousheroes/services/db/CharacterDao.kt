@@ -1,9 +1,9 @@
 package com.deverick.marvelousheroes.services.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.deverick.marvelousheroes.models.Character
-import kotlinx.coroutines.flow.Flow
 
 const val isFavorite = true
 const val notFavorite = false
@@ -18,5 +18,5 @@ interface CharacterDao {
     fun deleteFavorite(id: Int)
 
     @Query("SELECT * FROM characters WHERE favorite = $isFavorite")
-    fun getFavorites(): Flow<List<Character>>
+    fun getFavorites(): LiveData<List<Character>>
 }
