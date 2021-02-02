@@ -16,7 +16,7 @@ class FavoritesRepositoryImpl @Inject constructor(
         return characterDao.deleteFavorite(id)
     }
 
-    override fun getFavorites(): LiveData<List<Character>> {
+    override fun getFavorites(): List<Character> {
         return characterDao.getFavorites()
     }
 }

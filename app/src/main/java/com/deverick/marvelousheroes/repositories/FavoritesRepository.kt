@@ -8,5 +8,5 @@ interface FavoritesRepository {
 
     fun deleteFavorite(id: Int)
 
-    fun getFavorites(): LiveData<List<Character>>
+    fun getFavorites(): List<Character>
 }

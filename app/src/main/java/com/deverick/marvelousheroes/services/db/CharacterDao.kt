@@ -1,6 +1,5 @@
 package com.deverick.marvelousheroes.services.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.deverick.marvelousheroes.models.Character
@@ -18,5 +17,5 @@ interface CharacterDao {
     fun deleteFavorite(id: Int)
 
     @Query("SELECT * FROM characters WHERE favorite = $isFavorite")
-    fun getFavorites(): LiveData<List<Character>>
+    fun getFavorites(): List<Character>
 }
