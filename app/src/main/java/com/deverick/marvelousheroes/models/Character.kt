@@ -10,25 +10,17 @@ import kotlinx.android.parcel.Parcelize
 )
 @Parcelize
 data class Character(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val description: String,
     val modified: String,
     val resourceURI: String,
-    val urls: List<CharacterURL>,
     val thumbnail: CharacterThumbnail,
     val comics: CharacterComics,
     val stories: CharacterStories,
     val events: CharacterEvents,
     val series: CharacterSeries,
     val favorite: Boolean = false,
-) : Parcelable
-
-@Parcelize
-data class CharacterURL(
-    val type: String,
-    val url: String
 ) : Parcelable
 
 @Parcelize
@@ -42,7 +34,7 @@ data class CharacterComics(
     val available: String,
     val returned: String,
     val collectionURI: String,
-    val items: List<CharacterComicsItem>
+    val items: List<CharacterComicsItem>? = null
 ) : Parcelable
 
 @Parcelize
@@ -50,7 +42,7 @@ data class CharacterStories(
     val available: String,
     val returned: String,
     val collectionURI: String,
-    val items: List<CharacterStoriesItem>
+    val items: List<CharacterStoriesItem>? = null
 ) : Parcelable
 
 @Parcelize
@@ -58,7 +50,7 @@ data class CharacterEvents(
     val available: String,
     val returned: String,
     val collectionURI: String,
-    val items: List<CharacterEventsItem>
+    val items: List<CharacterEventsItem>? = null
 ) : Parcelable
 
 @Parcelize
@@ -66,7 +58,7 @@ data class CharacterSeries(
     val available: String,
     val returned: String,
     val collectionURI: String,
-    val items: List<CharacterSeriesItem>
+    val items: List<CharacterSeriesItem>? = null
 ) : Parcelable
 
 @Parcelize
