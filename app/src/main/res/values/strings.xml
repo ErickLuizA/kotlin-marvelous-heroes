@@ -4,8 +4,8 @@
     <string name="open">Open drawer</string>
     <string name="close">Close drawer</string>
     <string name="error_load_chars">A error occurred while loading characters</string>
-    <string name="welcome">Bem-vindo ao MarvelousHeroes</string>
-    <string name="choose">Escolha o seu\npersonagem</string>
+    <string name="welcome">Welcome to MarvelousHeroes</string>
+    <string name="choose">Choose your \ncharacter</string>
     <string name="menu">menu</string>
     <string name="char_img">character image</string>
     <string name="favorite">Favorite</string>
@@ -14,4 +14,5 @@
     <string name="stories">Stories: %1$s</string>
     <string name="events">Events: %1$s</string>
     <string name="series">Series: %1$s</string>
+    <string name="no_description">This character needs no description.</string>
 </resources>
