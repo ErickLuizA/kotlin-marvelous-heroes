@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.deverick.marvelousheroes.viewmodels.FavoritesViewModel
 import com.deverick.marvelousheroes.databinding.FavoritesFragmentBinding
 import com.deverick.marvelousheroes.ui.adapters.FavoritesAdapter
+import com.deverick.marvelousheroes.utils.Resource
+import com.google.android.material.snackbar.Snackbar
 
 class FavoritesFragment : Fragment() {
 
@@ -31,7 +33,35 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupToolbar()
         setupRecyclerView()
+
+        favoritesAdapter.setOnItemClickListener {
+            findNavController().navigate(
+                FavoritesFragmentDirections.actionFavoritesFragmentToDetailsFragment(it)
+            )
+        }
+
+        viewModel.characters.observe(viewLifecycleOwner, { res ->
+            when (res) {
+                is Resource.Success -> {
+                    hideLoading()
+                    favoritesAdapter.differ.submitList(res.data)
+                }
+
+                is Resource.Loading -> {
+                    showLoading()
+                }
+
+                is Resource.Error -> {
+                    hideLoading()
+                    Snackbar.make(view, "Error", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
+
+    private fun hideLoading() {}
+
+    private fun showLoading() {}
 
     private fun setupToolbar() {
         val navController = findNavController()
