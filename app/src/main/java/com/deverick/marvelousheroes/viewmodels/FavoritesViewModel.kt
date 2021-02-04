@@ -4,9 +4,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.deverick.marvelousheroes.models.Character
 import com.deverick.marvelousheroes.repositories.FavoritesRepository
 import com.deverick.marvelousheroes.utils.Resource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FavoritesViewModel @ViewModelInject constructor(
     private val favoritesRepository: FavoritesRepository
@@ -20,7 +23,7 @@ class FavoritesViewModel @ViewModelInject constructor(
         getFavorites()
     }
 
-    private fun getFavorites() {
+    private fun getFavorites() = viewModelScope.launch(Dispatchers.IO) {
         _characters.postValue(Resource.Loading())
 
         val response = favoritesRepository.getFavorites()
@@ -28,11 +31,11 @@ class FavoritesViewModel @ViewModelInject constructor(
         _characters.postValue(Resource.Success(response))
     }
 
-    fun addFavorite(id: Int) {
+    fun addFavorite(id: Int) = viewModelScope.launch(Dispatchers.IO) {
         favoritesRepository.addFavorite(id)
     }
 
-    fun deleteFavorite(id: Int) {
+    fun deleteFavorite(id: Int) = viewModelScope.launch(Dispatchers.IO) {
         favoritesRepository.deleteFavorite(id)
     }
 }

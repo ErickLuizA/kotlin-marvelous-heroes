@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +16,9 @@ import com.deverick.marvelousheroes.databinding.FavoritesFragmentBinding
 import com.deverick.marvelousheroes.ui.adapters.FavoritesAdapter
 import com.deverick.marvelousheroes.utils.Resource
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment() {
 
     private lateinit var binding: FavoritesFragmentBinding
@@ -55,13 +59,21 @@ class FavoritesFragment : Fragment() {
                     hideLoading()
                     Snackbar.make(view, "Error", Snackbar.LENGTH_SHORT).show()
                 }
+
+                else -> {
+                    Snackbar.make(view, "No favorites found", Snackbar.LENGTH_SHORT).show()
+                }
             }
         })
     }
 
-    private fun hideLoading() {}
+    private fun hideLoading() {
+        binding.progressBar.visibility = INVISIBLE
+    }
 
-    private fun showLoading() {}
+    private fun showLoading() {
+        binding.progressBar.visibility = VISIBLE
+    }
 
     private fun setupToolbar() {
         val navController = findNavController()
