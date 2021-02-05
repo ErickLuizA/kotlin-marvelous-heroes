@@ -1,18 +1,17 @@
 package com.deverick.marvelousheroes.services.db
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.deverick.marvelousheroes.models.Character
 
 @Dao
 interface CharacterDao {
 
-    @Query("UPDATE characters SET favorite = 0 WHERE id = :id")
-    fun addFavorite(id: Int)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addFavorite(character: Character)
 
-    @Query("UPDATE characters SET favorite = 0 WHERE id = :id")
-    fun deleteFavorite(id: Int)
+    @Delete
+    fun deleteFavorite(character: Character)
 
-    @Query("SELECT * FROM characters WHERE favorite = 1")
+    @Query("SELECT * FROM characters")
     fun getFavorites(): List<Character>
 }

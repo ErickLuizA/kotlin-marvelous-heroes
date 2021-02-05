@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -13,7 +14,10 @@ import com.bumptech.glide.Glide
 import com.deverick.marvelousheroes.R
 import com.deverick.marvelousheroes.viewmodels.DetailsViewModel
 import com.deverick.marvelousheroes.databinding.DetailsFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModels()
@@ -33,6 +37,34 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupToolbar()
         bindData()
+
+        viewModel.favorites.observe(viewLifecycleOwner, { res ->
+            if (res.contains(args.character)) {
+                binding.favButton.text = getString(R.string.unfavorite)
+                binding.favButton.setBackgroundColor(resources.getColor(R.color.grey))
+
+                binding.favButton.setOnClickListener {
+                    lifecycleScope.launch {
+                        viewModel.deleteFavorite(args.character)
+                    }
+
+                    binding.favButton.text = getString(R.string.favorite)
+                    binding.favButton.setBackgroundColor(resources.getColor(R.color.red))
+                }
+            } else {
+                binding.favButton.text = getString(R.string.favorite)
+                binding.favButton.setBackgroundColor(resources.getColor(R.color.red))
+
+                binding.favButton.setOnClickListener {
+                    lifecycleScope.launch {
+                        viewModel.addFavorite(args.character)
+                    }
+
+                    binding.favButton.text = getString(R.string.unfavorite)
+                    binding.favButton.setBackgroundColor(resources.getColor(R.color.grey))
+                }
+            }
+        })
     }
 
     private fun setupToolbar() {
@@ -49,7 +81,8 @@ class DetailsFragment : Fragment() {
             .into(binding.characterImage)
         binding.characterInfo.text = args.character.description
         binding.characterComics.text = getString(R.string.comics, args.character.comics.available)
-        binding.characterStories.text = getString(R.string.stories, args.character.stories.available)
+        binding.characterStories.text =
+            getString(R.string.stories, args.character.stories.available)
         binding.characterEvents.text = getString(R.string.events, args.character.events.available)
         binding.characterSeries.text = getString(R.string.series, args.character.series.available)
     }

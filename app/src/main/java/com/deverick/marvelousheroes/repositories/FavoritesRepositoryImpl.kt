@@ -8,12 +8,12 @@ import javax.inject.Inject
 class FavoritesRepositoryImpl @Inject constructor(
     private val characterDao: CharacterDao
 ) : FavoritesRepository {
-    override suspend fun addFavorite(id: Int) {
-        return characterDao.addFavorite(id)
+    override suspend fun addFavorite(character: Character) {
+        return characterDao.addFavorite(character)
     }
 
-    override suspend fun deleteFavorite(id: Int) {
-        return characterDao.deleteFavorite(id)
+    override suspend fun deleteFavorite(character: Character) {
+        return characterDao.deleteFavorite(character)
     }
 
     override suspend fun getFavorites(): List<Character> {

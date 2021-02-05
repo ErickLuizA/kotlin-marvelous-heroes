@@ -20,7 +20,6 @@ data class Character(
     val stories: CharacterStories,
     val events: CharacterEvents,
     val series: CharacterSeries,
-    val favorite: Boolean = false,
 ) : Parcelable
 
 @Parcelize

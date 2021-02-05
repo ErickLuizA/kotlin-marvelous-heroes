@@ -30,12 +30,4 @@ class FavoritesViewModel @ViewModelInject constructor(
 
         _characters.postValue(Resource.Success(response))
     }
-
-    fun addFavorite(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-        favoritesRepository.addFavorite(id)
-    }
-
-    fun deleteFavorite(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-        favoritesRepository.deleteFavorite(id)
-    }
 }
