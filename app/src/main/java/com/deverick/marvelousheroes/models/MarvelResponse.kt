@@ -15,5 +15,5 @@ data class Data<T> (
     val limit: String,
     val total: String,
     val count: String,
-    val results: List<T>
+    val results: MutableList<T>
 )

@@ -23,7 +23,9 @@
   <a href="#clipboard-description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#building_construction-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a>
+  <a href="#memo-license">License</a></a>|&nbsp;&nbsp;&nbsp;
+  <a href="#framed_picture-screenshots">Screenshots</a>
+</p>
 </p>
 
 ## :clipboard: Description
@@ -53,11 +55,18 @@ MarvelousHeroes is a app built with Kotlin using the Marvel Api based on the [de
  # Run App in Android Studio
 ```
 
+## :framed_picture: Screenshots
+
+<div>
+  <img alt="MarvelousHeroes screen" src=".github/Home.png"  width="200"/>
+  <img alt="MarvelousHeroes screen" src=".github/Details.png"  width="200"/>
+  <img alt="MarvelousHeroes screen" src=".github/Drawer.png"  width="200"/>
+  <img alt="MarvelousHeroes screen" src=".github/Favorites.png"  width="200"/>
+  <img alt="MarvelousHeroes screen" src=".github/Search.png"  width="200"/>
+</div>
+
 ## :information_source: TODO
-  - Implement tests
-  - Implement Search
-  - Implement better favorite logic
-  - Fix Paging bug
+  - Fix recyclerview bug
 
 ## :memo: License
 

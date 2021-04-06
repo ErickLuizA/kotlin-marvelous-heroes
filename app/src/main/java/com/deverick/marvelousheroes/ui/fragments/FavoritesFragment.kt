@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,16 +11,14 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.deverick.marvelousheroes.viewmodels.FavoritesViewModel
 import com.deverick.marvelousheroes.databinding.FavoritesFragmentBinding
-import com.deverick.marvelousheroes.ui.adapters.FavoritesAdapter
-import com.deverick.marvelousheroes.utils.Resource
-import com.google.android.material.snackbar.Snackbar
+import com.deverick.marvelousheroes.ui.adapters.CharactersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoritesFragment : Fragment() {
 
     private lateinit var binding: FavoritesFragmentBinding
-    private lateinit var favoritesAdapter: FavoritesAdapter
+    private lateinit var favoritesAdapter: CharactersAdapter
     private val viewModel: FavoritesViewModel by viewModels()
 
     override fun onCreateView(
@@ -44,35 +40,9 @@ class FavoritesFragment : Fragment() {
             )
         }
 
-        viewModel.characters.observe(viewLifecycleOwner, { res ->
-            when (res) {
-                is Resource.Success -> {
-                    hideLoading()
-                    favoritesAdapter.differ.submitList(res.data)
-                }
-
-                is Resource.Loading -> {
-                    showLoading()
-                }
-
-                is Resource.Error -> {
-                    hideLoading()
-                    Snackbar.make(view, "Error", Snackbar.LENGTH_SHORT).show()
-                }
-
-                else -> {
-                    Snackbar.make(view, "No favorites found", Snackbar.LENGTH_SHORT).show()
-                }
-            }
+        viewModel.getFavorites().observe(viewLifecycleOwner, { characters ->
+            favoritesAdapter.differ.submitList(characters)
         })
-    }
-
-    private fun hideLoading() {
-        binding.progressBar.visibility = INVISIBLE
-    }
-
-    private fun showLoading() {
-        binding.progressBar.visibility = VISIBLE
     }
 
     private fun setupToolbar() {
@@ -83,7 +53,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        favoritesAdapter = FavoritesAdapter()
+        favoritesAdapter = CharactersAdapter()
 
         binding.rvFavorites.apply {
             adapter = favoritesAdapter

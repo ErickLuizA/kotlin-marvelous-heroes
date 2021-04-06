@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -14,8 +13,8 @@ import com.bumptech.glide.Glide
 import com.deverick.marvelousheroes.R
 import com.deverick.marvelousheroes.viewmodels.DetailsViewModel
 import com.deverick.marvelousheroes.databinding.DetailsFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
@@ -38,30 +37,35 @@ class DetailsFragment : Fragment() {
         setupToolbar()
         bindData()
 
-        viewModel.favorites.observe(viewLifecycleOwner, { res ->
-            if (res.contains(args.character)) {
-                binding.favButton.text = getString(R.string.unfavorite)
-                binding.favButton.setBackgroundColor(resources.getColor(R.color.grey))
-
+        viewModel.getFavorites().observe(viewLifecycleOwner, { characters ->
+            if (characters.contains(args.character)) {
                 binding.favButton.setOnClickListener {
-                    lifecycleScope.launch {
-                        viewModel.deleteFavorite(args.character)
-                    }
+                    viewModel.deleteFavorite(args.character)
 
-                    binding.favButton.text = getString(R.string.favorite)
-                    binding.favButton.setBackgroundColor(resources.getColor(R.color.red))
+                    Snackbar.make(view, "Favorite deleted", Snackbar.LENGTH_SHORT).show()
                 }
             } else {
-                binding.favButton.text = getString(R.string.favorite)
-                binding.favButton.setBackgroundColor(resources.getColor(R.color.red))
-
                 binding.favButton.setOnClickListener {
-                    lifecycleScope.launch {
-                        viewModel.addFavorite(args.character)
-                    }
+                    viewModel.addFavorite(args.character)
 
-                    binding.favButton.text = getString(R.string.unfavorite)
-                    binding.favButton.setBackgroundColor(resources.getColor(R.color.grey))
+                    Snackbar.make(
+                        view,
+                        "Character added to the favorite list",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            if (characters.isEmpty()) {
+                binding.favButton.setOnClickListener {
+                    viewModel.addFavorite(args.character)
+
+                    Snackbar.make(
+                        view,
+                        "Character added to the favorite list",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+
                 }
             }
         })

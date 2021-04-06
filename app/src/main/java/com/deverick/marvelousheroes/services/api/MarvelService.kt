@@ -16,4 +16,10 @@ interface MarvelService {
         @Query("offset")
         offset: Int = 0,
     ): Response<MarvelResponse<Character>>
+
+    @GET("characters")
+    suspend fun getCharacter(
+        @Query("nameStartsWith")
+        name: String
+    ): Response<MarvelResponse<Character>>
 }

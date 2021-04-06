@@ -16,7 +16,5 @@ class FavoritesRepositoryImpl @Inject constructor(
         return characterDao.deleteFavorite(character)
     }
 
-    override suspend fun getFavorites(): List<Character> {
-        return characterDao.getFavorites()
-    }
+    override fun getFavorites() = characterDao.getFavorites()
 }

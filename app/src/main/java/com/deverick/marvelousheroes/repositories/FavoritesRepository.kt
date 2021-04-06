@@ -1,5 +1,6 @@
 package com.deverick.marvelousheroes.repositories
 
+import androidx.lifecycle.LiveData
 import com.deverick.marvelousheroes.models.Character
 
 interface FavoritesRepository {
@@ -7,5 +8,5 @@ interface FavoritesRepository {
 
     suspend fun deleteFavorite(character: Character)
 
-    suspend fun getFavorites(): List<Character>
+    fun getFavorites(): LiveData<List<Character>>
 }
