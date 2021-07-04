@@ -66,15 +66,11 @@ class CharactersFragment : Fragment() {
                     hideErrorMessage()
 
                     response.data?.let { marvelResponse ->
-                        charactersAdapter.differ.submitList(marvelResponse.data.results)
+                        (binding.rvCharacters.adapter as CharactersAdapter).differ.submitList(marvelResponse.data.results.toList())
 
                         val totalPages = marvelResponse.data.total
 
                         isLastPage = viewModel.charactersPage == totalPages.toInt()
-
-                        if (isLastPage) {
-                            binding.rvCharacters.setPadding(0, 0, 0, 0)
-                        }
                     }
                 }
 
@@ -161,6 +157,8 @@ class CharactersFragment : Fragment() {
 
     private fun setupRecyclerView() {
         charactersAdapter = CharactersAdapter()
+
+        charactersAdapter.setHasStableIds(true)
 
         binding.rvCharacters.apply {
             adapter = charactersAdapter

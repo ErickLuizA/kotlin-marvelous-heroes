@@ -19,18 +19,16 @@ class CharactersViewModel @ViewModelInject constructor(
 
     private val _characters: MutableLiveData<Resource<MarvelResponse<Character>>> =
         MutableLiveData()
-
-    private var _charactersResponse: MarvelResponse<Character>? = null
-    var charactersPage = 0
-
     val characters: LiveData<Resource<MarvelResponse<Character>>>
         get() = _characters
 
-    init {
+    private var _charactersResponse: MarvelResponse<Character>? = null
 
+    var charactersPage = 0
+
+    init {
         getCharacters()
     }
-
 
     fun getCharacters() = viewModelScope.launch {
         if (hasInternetConnection(getApplication<MarvelousHeroesApplication>().applicationContext)) {
@@ -55,14 +53,16 @@ class CharactersViewModel @ViewModelInject constructor(
                 if (_charactersResponse == null) {
                     _charactersResponse = marvelResponse
                 } else {
-                    _charactersResponse!!.data.results.addAll(marvelResponse.data.results)
+                    val oldCharacters = _charactersResponse!!.data.results
+                    val newCharacters = marvelResponse.data.results
+
+                    oldCharacters.addAll(newCharacters)
                 }
 
-                return Resource.Success(_charactersResponse ?: marvelResponse)
+                return Resource.Success(_charactersResponse!!)
             }
         }
 
         return Resource.Error(response.message())
     }
-
 }

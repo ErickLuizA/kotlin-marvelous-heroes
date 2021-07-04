@@ -28,7 +28,6 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHo
 
     val differ = AsyncListDiffer(this, differCallback)
 
-
     private var onItemClickListener: ((Character) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Character) -> Unit) {
@@ -42,6 +41,10 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHo
     }
 
     override fun getItemCount(): Int = differ.currentList.size
+
+    override fun getItemId(position: Int): Long = differ.currentList[position].id.toLong()
+
+    override fun getItemViewType(position: Int): Int = position
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
 
