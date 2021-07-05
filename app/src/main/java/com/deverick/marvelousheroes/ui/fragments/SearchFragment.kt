@@ -15,7 +15,6 @@ import com.deverick.marvelousheroes.viewmodels.SearchViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
@@ -103,6 +102,8 @@ class SearchFragment : Fragment() {
 
     private fun setupRecyclerView() {
         charactersAdapter = CharactersAdapter()
+
+        charactersAdapter.setHasStableIds(true)
 
         binding.rvCharacters.apply {
             adapter = charactersAdapter

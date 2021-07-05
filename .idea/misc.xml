@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.228125" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.25" />
         <entry key="app/src/main/res/layout/details_fragment.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/favorites_fragment.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/layout/fragment_characters.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_character.xml" value="0.22" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.25" />
