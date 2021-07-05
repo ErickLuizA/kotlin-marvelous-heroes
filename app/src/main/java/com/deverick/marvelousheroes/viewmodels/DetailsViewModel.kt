@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.deverick.marvelousheroes.repositories.FavoritesRepository
 import com.deverick.marvelousheroes.models.Character
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DetailsViewModel @ViewModelInject constructor(
@@ -15,12 +16,14 @@ class DetailsViewModel @ViewModelInject constructor(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
-    fun getFavorites(viewLifeCycleOwner: LifecycleOwner, character: Character) {
-        favoritesRepository.getFavorites().observe(viewLifeCycleOwner, Observer { characters ->
-            if(characters.contains(character)) {
-                _isFavorite.postValue(true)
+    fun getFavorites(character: Character) = viewModelScope.launch {
+        favoritesRepository.getFavorites().asFlow().collect { characters ->
+            characters.forEach {
+                if (it.id == character.id) {
+                    _isFavorite.postValue(true)
+                }
             }
-        })
+        }
     }
 
     fun toggleFavorite(character: Character) {
@@ -31,13 +34,13 @@ class DetailsViewModel @ViewModelInject constructor(
         }
     }
 
-    fun addFavorite(character: Character) = viewModelScope.launch(Dispatchers.IO) {
+    private fun addFavorite(character: Character) = viewModelScope.launch(Dispatchers.IO) {
         favoritesRepository.addFavorite(character)
 
         _isFavorite.postValue(true)
     }
 
-    fun deleteFavorite(character: Character) = viewModelScope.launch(Dispatchers.IO) {
+    private fun deleteFavorite(character: Character) = viewModelScope.launch(Dispatchers.IO) {
         favoritesRepository.deleteFavorite(character)
 
         _isFavorite.postValue(false)

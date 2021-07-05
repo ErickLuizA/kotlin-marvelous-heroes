@@ -33,7 +33,7 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getFavorites(viewLifecycleOwner, args.character)
+        viewModel.getFavorites(args.character)
 
         setupToolbar()
         bindData()
@@ -61,7 +61,7 @@ class DetailsFragment : Fragment() {
     private fun bindData() {
         binding.characterName.text = args.character.name
         Glide.with(this)
-            .load("${args.character.thumbnail.path}/portrait_fantastic.${args.character.thumbnail.extension}")
+            .load("${args.character.thumbnail.path}/standard_fantastic.${args.character.thumbnail.extension}")
             .into(binding.characterImage)
         binding.characterInfo.text = args.character.description
         binding.characterComics.text = getString(R.string.comics, args.character.comics.available)
