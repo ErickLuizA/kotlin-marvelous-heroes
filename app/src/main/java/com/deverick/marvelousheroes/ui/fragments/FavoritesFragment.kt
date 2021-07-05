@@ -55,6 +55,8 @@ class FavoritesFragment : Fragment() {
     private fun setupRecyclerView() {
         favoritesAdapter = CharactersAdapter()
 
+        favoritesAdapter.setHasStableIds(true)
+
         binding.rvFavorites.apply {
             adapter = favoritesAdapter
             layoutManager = GridLayoutManager(activity, 2)

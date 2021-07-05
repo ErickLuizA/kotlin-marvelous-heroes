@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.deverick.marvelousheroes.R
 import com.deverick.marvelousheroes.viewmodels.DetailsViewModel
 import com.deverick.marvelousheroes.databinding.DetailsFragmentBinding
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,41 +33,22 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getFavorites(viewLifecycleOwner, args.character)
+
         setupToolbar()
         bindData()
 
-        viewModel.getFavorites().observe(viewLifecycleOwner, { characters ->
-            if (characters.contains(args.character)) {
-                binding.favButton.setOnClickListener {
-                    viewModel.deleteFavorite(args.character)
-
-                    Snackbar.make(view, "Favorite deleted", Snackbar.LENGTH_SHORT).show()
-                }
+        viewModel.isFavorite.observe(viewLifecycleOwner, { isFavorite ->
+            if (isFavorite) {
+                binding.favButton.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {
-                binding.favButton.setOnClickListener {
-                    viewModel.addFavorite(args.character)
-
-                    Snackbar.make(
-                        view,
-                        "Character added to the favorite list",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            if (characters.isEmpty()) {
-                binding.favButton.setOnClickListener {
-                    viewModel.addFavorite(args.character)
-
-                    Snackbar.make(
-                        view,
-                        "Character added to the favorite list",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-
-                }
+                binding.favButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
         })
+
+        binding.favButton.setOnClickListener {
+            viewModel.toggleFavorite(args.character)
+        }
     }
 
     private fun setupToolbar() {
