@@ -63,12 +63,8 @@ MarvelousHeroes is a app built with Kotlin using the Marvel Api based on the [de
   <img alt="MarvelousHeroes screen" src=".github/Drawer.png"  width="200"/>
   <img alt="MarvelousHeroes screen" src=".github/Favorites.png"  width="200"/>
   <img alt="MarvelousHeroes screen" src=".github/Search.png"  width="200"/>
+  <img alt="MarvelousHeroes screen" src=".github/Searched.png"  width="200"/>
 </div>
-
-## :information_source: TODO
-  - Fix recyclerview bug
-  - Design fix
-  - Sort and Filters
 
 ## :memo: License
 
