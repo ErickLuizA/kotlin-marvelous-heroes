@@ -1,7 +1,7 @@
-<h1 align="center"> MarvelousHeroes </h1>
+<h1 align="center"> kotlin-marvelous-heroes </h1>
 
 <p align="center">
-  <a href="https://github.com/ErickLuizA/MarvelousHeroes/graphs/commit-activity" alt="Maintenance">
+  <a href="https://github.com/ErickLuizA/kotlin-marvelous-heroes/graphs/commit-activity" alt="Maintenance">
     <img src="https://img.shields.io/badge/Maintained%3F-yes-1EAE72.svg" />
   </a>
 
@@ -11,12 +11,12 @@
 
 <br/>
 
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/ErickLuizA/MarvelousHeroes?color=blue">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/ErickLuizA/kotlin-marvelous-heroes?color=blue">
 
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ErickLuizA/MarvelousHeroes">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ErickLuizA/kotlin-marvelous-heroes">
 
-<a href="https://github.com/ErickLuizA/MarvelousHeroes/stargazers">
-  <img alt="GitHub stars" src="https://img.shields.io/github/stars/ErickLuizA/MarvelousHeroes?style=social">
+<a href="https://github.com/ErickLuizA/kotlin-marvelous-heroes/stargazers">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/ErickLuizA/kotlin-marvelous-heroes?style=social">
 </a>
 
 <p align="center">
@@ -30,7 +30,7 @@
 
 ## :clipboard: Description
 
-MarvelousHeroes is a app built with Kotlin using the Marvel Api based on the [dev challenge](https://www.devchallenge.com.br/challenges/5edabfda693fca2236c83cc7/details)  
+kotlin-marvelous-heroes is a app built with Kotlin using the Marvel Api based on the [dev challenge](https://www.devchallenge.com.br/challenges/5edabfda693fca2236c83cc7/details)
 
 ## :building_construction: Technologies
 
@@ -40,13 +40,12 @@ MarvelousHeroes is a app built with Kotlin using the Marvel Api based on the [de
   - [Dagger-Hilt](https://dagger.dev/hilt/quick-start)
   - [Android Jetpack](https://developer.android.com/jetpack)
 
-
 ## :rocket: Getting Started
 
 ## 1. Download the repository
 
 ```shell
- $ git clone https://github.com/ErickLuizA/MarvelousHeroes.git
+ $ git clone https://github.com/ErickLuizA/kotlin-marvelous-heroes.git
 ```
 
 ## 2. Execution
@@ -58,12 +57,12 @@ MarvelousHeroes is a app built with Kotlin using the Marvel Api based on the [de
 ## :framed_picture: Screenshots
 
 <div>
-  <img alt="MarvelousHeroes screen" src=".github/Home.png"  width="200"/>
-  <img alt="MarvelousHeroes screen" src=".github/Details.png"  width="200"/>
-  <img alt="MarvelousHeroes screen" src=".github/Drawer.png"  width="200"/>
-  <img alt="MarvelousHeroes screen" src=".github/Favorites.png"  width="200"/>
-  <img alt="MarvelousHeroes screen" src=".github/Search.png"  width="200"/>
-  <img alt="MarvelousHeroes screen" src=".github/Searched.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Home.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Details.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Drawer.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Favorites.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Search.png"  width="200"/>
+  <img alt="kotlin-marvelous-heroes screen" src=".github/Searched.png"  width="200"/>
 </div>
 
 ## :memo: License
